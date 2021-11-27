@@ -1,0 +1,9 @@
+body{
+    font-family: "Raleway",Arial, Helvetica, sans-serif;
+}
+.square{
+    float: left;
+    width: 33%;
+    height: 16vh;
+    border: 2px solid black;
+}
