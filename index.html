@@ -15,16 +15,39 @@
     <title>Tic Toc Toe Game</title>
 </head>
 <body>
-    <header></header>
+    <header><div class="col-12 text-center">
+        <!-- Game Instructions -->
+        <p class="text-primary btn-info">Game starts by just Tap on 
+            box<br><br>Player 1 starts as 
+            <b>Player X And Second 
+            Player as <b>Player 0</b>
+        </p>
+        
+    </div></header>
     <main>
         <section id="square">
             <div class="container">
                 <div class="row">
+                    <div class="col-4"><input class="btn btn-lg square" id="btn1" ></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn2" ></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn3"></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn4"></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn5"></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn6"></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn7" ></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn8"></div>
+                    <div class="col-4"><input class="btn btn-lg square" id="btn9"></div>
                 </div>
             </div>
         </section>
+        <footer>
+            <div class="row text-center p-3">
+                <div class="col-6 left"><input class=" btn-success" id="start" type="button" value="Start"></div>
+                <div class="col-6 "><input class=" btn-warning" id="reset"type="button" value="Reset" ></div>
+                </div>
+        </footer>
     </main>
-    <script src="script.js"></script>
-    <!-- <script src="draw.js"></script> -->
+    <!-- <script src="script.js"></script> -->
+    <script src="draw.js"></script>
 </body>
 </html>
