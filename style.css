@@ -20,6 +20,9 @@ body{
     width: 220px;
    
 }
+.turn{
+    margin-top: 10px;
+}
 .tockenX,.tockenO{
     border-radius: 20px;
     width: 100px;
@@ -54,7 +57,7 @@ body{
 .grid{
     
 background: #164D75;
-width: 200px;
+width: 150px;
 height: 0%;
 padding-bottom: 100%;
 
@@ -67,6 +70,10 @@ padding-bottom: 100%;
     justify-content: space-around;
    
 }
+.grid{
+    text-align: center;
+    color: white;
+}
 .active{
     font-size: 14px;
     color: white;
@@ -74,12 +81,18 @@ padding-bottom: 100%;
 h1, .status{
     color:black;
 }
-.reset, .start{
+.restart, .start{
     cursor: pointer;
 }
-.reset:hover, .start:hover{
+.restart,.start{
+    color:#000;
+}
+.reset:hover, .start:hover , .restart:hover{
     color: #1e7516;
-}.grid::before {
-    content: "";
+}
+  footer{
+    
+      width: 100%;
+      color: brown;
   }
   
