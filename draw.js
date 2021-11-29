@@ -1,39 +1,17 @@
-// const switchColor = (color) =>{
-//     if (color === "red")
-//     return "blue";
-//     else return "red";
-//     }
-// // Create new div
-// const buildSquares = () => {
-//     const target = document.querySelector(".row");
-//     for (let i = 0; i < 9; i++) {
-//       const square = document.createElement("DIV");
-   
-//       flag ="red";
-//       // add class square
-//       square.classList.add("square");
-//       square.classList.add("col-4");
-  
-//       //add listener
-//       square.addEventListener( 'mousedown',function(){
-//           this.style.backgroundColor = flag;
-//           flag= switchColor(flag);
-//       })
-//       target.appendChild(square);
-//     }
-//   };
-//   buildSquares();
-// Getting my buttons
 class Player{
     constructor(name,sticker){
         this.name = name;
         this.sticker = sticker;
+        this.score = 0;
     }
 }
 
-players = [];
-player1 = new Player("Muntaga","X");
-player2 = new Player("Habsa","O");
+let players = [];
+let player1 = new Player("Muntaga","X");
+let player2 = new Player("Habsa","O");
+player1.score = parseInt(localStorage.getItem('score'))|| 0;
+console.log(player1.score );
+player2.score = 0;
 players.push(player1);
 players.push(player2);
 
@@ -53,6 +31,9 @@ const nextPlayer = ()=>{
     }
   }
 
+
+  //Show score
+  let scoreText = document.querySelector("#score").innerHTML = `Score: ${player1.score}`;
   // Get board value
 let btn1 = document.querySelector("#btn1").value;
 let btn2 = document.querySelector("#btn2").value;
@@ -117,6 +98,12 @@ const play = () => {
              if(board[0] == board[1] && board[1] == board[2] && board[2] == activePlayer.sticker || 
                 board[3] == board[4] && board[4] == board[5] && board[5] == activePlayer.sticker || 
                 board[6] == board[7] && board[7] == board[8] && board[8] == activePlayer.sticker){
+                    if (activePlayer = players[1]){
+                        activePlayer.score ++;
+                        localStorage.setItem("Name",activePlayer.name);
+                        localStorage.setItem("Score",activePlayer.score);
+                    }
+                    
                     alert(`${activePlayer.name} is the winner`);
                    // break;
                     reset();
@@ -125,12 +112,22 @@ const play = () => {
              else if(board[1] == board[4] && board[4] == board[7] && board[7] == activePlayer.sticker || 
                      board[2] == board[5] && board[5] == board[8] && board[8] == activePlayer.sticker || 
                      board[3] == board[6] && board[6] == board[9] && board[9] == activePlayer.sticker){
+                        if (activePlayer = players[1]){
+                            activePlayer.score ++;
+                            localStorage.setItem("Name",activePlayer.name);
+                            localStorage.setItem("Score",activePlayer.score);
+                        }
                     alert(`${activePlayer.name} is the winner`);
                     reset();
              }
              //Diagonal
              else   if(board[1] == board[5] && board[5] == board[9] && board[9] == activePlayer.sticker || 
                 board[3] == board[5] && board[5] == board[7] && board[7]== activePlayer.sticker ){
+                    if (activePlayer = players[1]){
+                        activePlayer.score ++;
+                        localStorage.setItem("Name",activePlayer.name);
+                        localStorage.setItem("Score",activePlayer.score);
+                    }
                     alert(`${activePlayer.name} is the winner`);
                     reset();
                   
