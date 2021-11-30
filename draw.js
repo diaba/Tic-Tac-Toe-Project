@@ -24,6 +24,7 @@ let board = ["", "", "", "", "", "", "", "", ""];
 // Get all element from front-end 
 const txtScoreX = document.querySelector(".tockenX");
 const txtScoreO = document.querySelector(".tockenO");
+const txtScoreT = document.querySelector(".tockenT");
 const btns = document.querySelectorAll(".grid");
 const btn1 = document.querySelector(".btn1");
 const btn2 = document.querySelector(".btn2");
@@ -84,6 +85,7 @@ const updateScore =() =>{
     turn.className += "active";
     txtScoreO.innerHTML = `O : ${players[1].score}`;
     txtScoreX.innerHTML = `X : ${players[0].score}`;
+    txtScoreT.innerHTML = `Tie : ${tie}`;
 } 
 updateScore();
 const spot = () => {

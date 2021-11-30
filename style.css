@@ -32,23 +32,22 @@
        justify-content: center;
        align-items: center;
        
-gap:15px;
+
    }
    .tockenX, .tockenO{
        margin: 10px 0;
-       width: 100px;
-       border-radius: 25px; 
+       width: 30%;
        display: grid;
        place-items: center;
- 
+       border-radius: 25px; 
    }
    .active{
-     margin: 10px 0;
+       margin: 10px 0;
        color: cornflowerblue;
        border-radius: 25px;  
        background:burlywood;
        border-bottom: 2px solid black;   
-       width: 40%; 
+       width: 20%; 
        display: grid;
        place-items: center;
    }
