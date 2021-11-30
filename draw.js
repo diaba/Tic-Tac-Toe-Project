@@ -16,72 +16,66 @@ players.push(player1);
 players.push(player2);
 
 let board = ["", "", "", "", "", "", "", "", ""];
+
+
+// Get all element from front-end 
+const txtScoreX = document.querySelector(".tockenX");
+const txtScoreO = document.querySelector(".tockenO");
+const btns = document.querySelectorAll(".grid");
+const btn1 = document.querySelector(".btn1");
+const btn2 = document.querySelector(".btn2");
+const btn3 = document.querySelector(".btn3");
+const btn4 = document.querySelector(".btn4");
+const btn5 = document.querySelector(".btn5");
+const btn6 = document.querySelector(".btn6");
+const btn7 = document.querySelector(".btn7");
+const btn8 = document.querySelector(".btn8");
+const btn9 = document.querySelector(".btn9");
+const btnReset = document.querySelector(".reset");
+const btnRestart = document.querySelector(".restart");
+const btnPlay = document.querySelector(".start");
+const message = document.querySelector("body");
+const display = document.querySelector(".message");
+
 let activePlayer = players[0];
-
-//insert select 
-//board[0] = activePlayer.sticker;
-const askToPlayAgain = ()=>{
-    var txt;
-    if (confirm(`${activePlayer.sticker} won! \n Do you want to Play again`)) {
-    //   reset();
-      play();
-      reset();
-    } else {
-      txt = "You pressed Cancel!";
-    }
-}
-const askToPlayAgainTie = ()=>{
-    var txt;
-    if (confirm(`It's a tie! \n\n Do you want to Play again`)) {
-    //   reset();
-      play();
-      reset();
-    } else {
-      txt = "You pressed Cancel!";
-    }
-}
-
-const nextPlayer = ()=>{
-    if(activePlayer == players[0]){
-        return activePlayer = players[1];
-    }
-    else{
-    return activePlayer = players[0];
-    }
-  }
-
-//   update score 
-function updateScore(){
-    document.querySelector(".tockenX").innerHTML = `X : ${player1.score}`;
-    document.querySelector(".tockenO").innerHTML = `O : ${player2.score}`;
-} 
-
-  // Get board value
-let btn1 = document.querySelector(".btn1").innerHTML;
-let btn2 = document.querySelector(".btn2").innerHTML;
-let btn3 = document.querySelector(".btn3").innerHTML;
-let btn4 = document.querySelector(".btn4").innerHTML;
-let btn5 = document.querySelector(".btn5").innerHTML;
-let btn6 = document.querySelector(".btn6").innerHTML;
-let btn7 = document.querySelector(".btn7").innerHTML;
-let btn8 = document.querySelector(".btn8").innerHTML;
-let btn9 = document.querySelector(".btn9").innerHTML;
-
-let btnReset = document.querySelector(".restart");
-let btnPlay = document.querySelector(".start");
 let gamePlaying = true;
+let turn = txtScoreX;
 
-  const reset = () => {
-      document.querySelector(".turn").innerHTML = "";
+
+const reset = () => {
+   
+    activePlayer = players[0];
+    gamePlaying = true;
+    turn.className = "active";
+    btns.forEach(e =>{
+        e.textContent = "";
+    })
       for(let i= 0; i< 9; i++){ 
-      let btn = document.querySelector(`.btn${i+1}`)
         board[i]="";
-        btn.innerHTML = "";
     }
-    
  }
 
-
+//board[0] = activePlayer.sticker;
+const nextPlayer = ()=>{
+    if(activePlayer == players[0]){
+        turn.classList.remove("active");
+        turn = txtScoreX;
+        turn.classList.add("active");
+        activePlayer = players[1];
+    }
+    else{
+        turn.classList.remove("active");
+        turn = txtScoreO;
+        activePlayer = players[0];
+        turn.classList.add("active");
+    }
+  }
+//   update score 
+const updateScore =() =>{
+    turn.className += "active";
+    txtScoreO.innerHTML = `O : ${player2.score}`;
+    txtScoreX.innerHTML = `X : ${player1.score}`;
+} 
 const spot = () => {
     let i=0;
     while (i<9){
@@ -95,29 +89,29 @@ const spot = () => {
 }
 const stopGame = ()=>{
     gamePlaying = false;
-    document.querySelector(".turn").innerHTML = " ";
     for (let i = 0; i< 9; i++){
         if(board[i] === ""){
         board[i] = "t";
         }
 }
 }
-
+const sendMessage = (win)=>{
+    message.classList.add("overlay");
+    message.classList.add("open");
+    display.textContent = win;
+    // btnRestart.focus();
+}
 const play = () => {
     gamePlaying = true;
     for (let i = 0; i< 9; i++){
         let btn = document.querySelector(`.btn${i+1}`);
         let content = btn.innerHTML;  
-        document.querySelector(".turn").innerHTML = `${activePlayer.sticker} turn.`;
         btn.addEventListener('click', function(event){
              event.preventDefault();           
              if (board[i] === "" && gamePlaying === true){
                         // save btn selected to board
                         board[i] = activePlayer.sticker;
-                        // -- save it to board
-                        // -- print x to front page
-                        btn.innerHTML = activePlayer.sticker;
-                    
+                        btn.innerHTML = activePlayer.sticker;                 
                         // --check for win        
                         //Horizontal                                                             
                         if( board[0] == board[1] && board[1] == board[2] && board[2] == activePlayer.sticker || 
@@ -128,10 +122,8 @@ const play = () => {
                                     
                                     // localStorage.setItem("Name",activePlayer.name);
                                     updateScore();
-                                    stopGame();
-                                    
-                                    askToPlayAgain ();
-                                
+                                    stopGame();   
+                                    sendMessage(`${activePlayer.sticker} won !`)                                
                         }
                         //Vertical
                         else if(board[0] == board[3] && board[3] == board[6] && board[6] == activePlayer.sticker || 
@@ -141,32 +133,44 @@ const play = () => {
                                     updateScore();
                                     
                                     stopGame();
-                        
-                                  askToPlayAgain ();
+                                  sendMessage(`${activePlayer.sticker} won !`)
 
                         }
                         //Diagonal
                         else   if(board[0] == board[4] && board[4] == board[8] && board[8] == activePlayer.sticker || 
                             board[2] == board[4] && board[4] == board[6] && board[6]== activePlayer.sticker ){
                                 activePlayer.score ++;
-                                updateScore();
-                
+                                updateScore();              
                                 stopGame();
-                                askToPlayAgain ();
+                                sendMessage(`${activePlayer.sticker} won !`)
                             
                         }else if(spot()){
                            
                             stopGame();
-                            askToPlayAgain ();
+                            sendMessage(`It was a tie! Try again`)
                         }
+                        turn.classList.remove("active");
                         nextPlayer();
-                        document.querySelector(".turn").innerHTML = `${activePlayer.sticker} turn.`;
              }          
-             document.querySelector(".turn").innerHTML = ``;
+           
          });
      }     
 }
-
-
-btnReset.addEventListener("click",reset);
-btnPlay.addEventListener("click",play);
+const restart =() =>{
+    message.classList.remove("overlay");
+    message.classList.remove("open");
+    reset();
+    play();
+}
+// reset the game
+const resetGame = () =>{
+    
+    player1.score = 0;
+    player2.score = 0;
+    updateScore();
+    reset();
+    play();
+}
+btnRestart.addEventListener("click",restart);
+btnReset.addEventListener("click",resetGame);
+btnPlay.addEventListener("click",restart);

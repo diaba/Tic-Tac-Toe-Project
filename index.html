@@ -20,71 +20,47 @@
     <link rel="stylesheet" href="style.css">
     <title>Tic Toc Toe Game</title>
 </head>
-
 <body>
-     <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" hidden>
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Play</button>
-        </div>
-      </div>
-    </div>
-  </div>
     <main>
+        <div class="page"></div>
         <div class="title">
             <h1>Tic Toc Toe</h1>
+            
+            <div class="profile">
+                <img src="https://i.ytimg.com/vi/FNJQvRVMqPM/maxresdefault.jpg" alt="Photo" class="rounded-circle" width="25px" height="25px">
+            </div>
         </div>
-        <div class="profile col-2"><img src="https://i.ytimg.com/vi/FNJQvRVMqPM/maxresdefault.jpg" alt="Photo"
-            class="rounded-circle" width="25px" height="25"></div>
+       
         <div class="container ">
-            <div class="token row">
-                <div class="tockenX col-2 ">X : 0</div>
-                <div class="tockenO col-2 ">O : 0</div>
-                <div class="turn"></div>
+            <div class="token ">
+                <div class="tockenX active">X : 0</div>
+                <div class="tockenO ">O : 0</div>
+              
             </div>
-            <div class="game-box row">
-                <div class="grid btn1 col-4 "> </div>
-                <div class="grid btn2 col-4"></div>
-                <div class="grid btn3 col-4"></div>
-                <div class="grid btn4 col-4"></div>
-                <div class="grid btn5 col-4"></div>
-                <div class="grid btn6 col-4"></div>
-                <div class="grid btn7 col-4"></div>
-                <div class="grid btn8 col-4"></div>
-                <div class="grid btn9 col-4"></div>
+            <div class="game-box">
+                <div class="grid btn1"> </div>
+                <div class="grid btn2"></div>
+                <div class="grid btn3"></div>
+                <div class="grid btn4"></div>
+                <div class="grid btn5"></div>
+                <div class="grid btn6"></div>
+                <div class="grid btn7"></div>
+                <div class="grid btn8"></div>
+                <div class="grid btn9"></div>
             </div>
         </div>
-    </main>
-
-
-   
+    </main>  
     <footer> 
-        <div class="restart">Restart</div>
-        <div class="start">Play</div>
+        <div class="reset btn btn-outline-danger">Reset</div>
+    
+        <div class="start btn btn-outline-success" >Play</div>
     </footer>
-    <!-- <script src="script.js"></script> -->
+    <div class="overlay">
+        <div id="message">
+            <p class="message"></p>
+            <div class="restart btn btn-outline-primary">Restart</div>
+        </div>
+    </div>
     <script src="draw.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-
 </html>
