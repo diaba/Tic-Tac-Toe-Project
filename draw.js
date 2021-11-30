@@ -5,7 +5,6 @@ class Player{
         this.score = 0;
     }
 }
-
 let players = [];
 let player1 = new Player("Muntaga","X");
 let player2 = new Player("Habsa","O");
@@ -73,6 +72,14 @@ const spot = () => {
         return true;
     }
 }
+const stopGame = ()=>{
+    document.querySelector(".turn").innerHTML = "";
+    for (let i = 0; i< 9; i++){
+        if(board[i] === ""){
+        board[i] = "t";
+        }
+}
+}
 
 const play = () => {
     for (let i = 0; i< 9; i++){
@@ -98,9 +105,8 @@ const play = () => {
                                     
                                     // localStorage.setItem("Name",activePlayer.name);
                                     updateScore();
-                                    alert(`${activePlayer.sticker} is the winner`);
-                                    reset();
-                                   
+                                    stopGame();
+                                    alert(`${activePlayer.sticker} won` )
                                    
                                 
                         }
@@ -110,21 +116,24 @@ const play = () => {
                                 board[2] == board[5] && board[5] == board[8] && board[8] == activePlayer.sticker){
                                     activePlayer.score ++;
                                     updateScore();
-                                    reset();
-                                   
+                                    
+                                    stopGame();
+                        
+                                    alert(`${activePlayer.sticker} won` )
                         }
                         //Diagonal
                         else   if(board[0] == board[4] && board[4] == board[8] && board[8] == activePlayer.sticker || 
                             board[2] == board[4] && board[4] == board[6] && board[6]== activePlayer.sticker ){
                                 activePlayer.score ++;
                                 updateScore();
-                                    reset();
-                                    
+                
+                                stopGame();
+                                    alert(`${activePlayer.sticker} won` )
                             
                         }else if(spot()){
                            
-                                    reset();
-                            
+                            stopGame();
+                                    alert(`a tie` )
                         }
                         nextPlayer();
                         document.querySelector(".turn").innerHTML = `${activePlayer.sticker} turn.`;

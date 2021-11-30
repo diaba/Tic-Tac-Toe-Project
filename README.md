@@ -26,18 +26,26 @@ create class game
 // playing the game
 set points to zero
 - set player 1 and player 2[x,o]
-- loop i from 0 to 3
-  - loop j from 0 to 3
-    -- print player 1 turn
-    -- scan chose player from empty box
-    -- print x
-    -- save position to player 2 array
-     -- print player 1 turn
-    -- scan chose player from empty box
-    -- print x
-    -- save position to player 2 array
-check for win
- 
+-activeplayer to player1
+
+  - loop j from 0 to 9
+    -- print activeplayer turn
+    -- get the grid clicked from front page
+       --- lock the grid
+    -- save it to board
+    -- print x to front page
+    --check for win
+       if activeplayer wins then
+         set player1.score to score + 1
+         print active is the winner front page
+         exit the game
+    next player
 set  draw
 
+// reset game
+set points to zero(x and o)
+
+// restart game
+clean board
+clean front page
 
