@@ -62,7 +62,6 @@ const reset = () => {
     }
  }
 
-//board[0] = activePlayer.sticker;
 const nextPlayer = ()=>{
     gamePlaying = true;
     if(activePlayer == players[0]){
