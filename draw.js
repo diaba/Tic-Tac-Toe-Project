@@ -40,6 +40,9 @@ const btnRestart = document.querySelector(".restart");
 const btnPlay = document.querySelector(".start");
 const message = document.querySelector("body");
 const display = document.querySelector(".message");
+const sound = document.querySelector("#sound");
+const soundT = document.querySelector("#Stie");
+const soundW = document.querySelector("#Swin");
 
 let activePlayer = players[0];
 let gamePlaying = true;
@@ -61,6 +64,7 @@ const reset = () => {
 
 //board[0] = activePlayer.sticker;
 const nextPlayer = ()=>{
+    gamePlaying = true;
     if(activePlayer == players[0]){
         turn.classList.remove("active");
         turn = txtScoreX;
@@ -121,6 +125,7 @@ const play = () => {
         btn.addEventListener('click', function(event){
              event.preventDefault();           
              if (board[i] === "" && gamePlaying === true){
+                sound.play();
                         // save btn selected to board
                         board[i] = activePlayer.sticker;
                         btn.innerHTML = activePlayer.sticker;                 
@@ -131,7 +136,7 @@ const play = () => {
                             board[6] == board[7] && board[7] == board[8] && board[8] == activePlayer.sticker){
         
                                     activePlayer.score ++;                                  
-                                    
+                                    soundW.play();
                                     updateScore();
                                     stopGame();   
                                     sendMessage(`${activePlayer.sticker} won !`)                                
@@ -142,22 +147,24 @@ const play = () => {
                                 board[2] == board[5] && board[5] == board[8] && board[8] == activePlayer.sticker){
                                     activePlayer.score ++;
                                     updateScore();
-                                    
+                                    soundW.play();
                                     stopGame();
-                                  sendMessage(`${activePlayer.sticker} won !`)
+                                    sendMessage(`${activePlayer.sticker} won !`)
 
                         }
                         //Diagonal
                         else   if(board[0] == board[4] && board[4] == board[8] && board[8] == activePlayer.sticker || 
                             board[2] == board[4] && board[4] == board[6] && board[6]== activePlayer.sticker ){
                                 activePlayer.score ++;
-                                updateScore();              
+                                updateScore();      
+                                soundW.play();        
                                 stopGame();
                                 sendMessage(`${activePlayer.sticker} won !`)
                             
                         }else if(spot()){
                             tie++;
                             updateScore();   
+                            soundT.play();
                             stopGame();
                             sendMessage(`It was a tie! Try again`)
                         }
@@ -179,7 +186,7 @@ const resetGame = () =>{
     
     player1.score = 0;
     player2.score = 0;
-    let tie = 0;
+    tie = 0;
     updateScore();
     reset();
     play();
