@@ -43,7 +43,7 @@ gap:15px;
  
    }
    .active{
-       margin: 10px 0;
+     margin: 10px 0;
        color: cornflowerblue;
        border-radius: 25px;  
        background:burlywood;
@@ -123,3 +123,8 @@ body.open .overlay{
 filter: blur(8px);
 -webkit-filter: blur(8px);  
 }
+@media only screen and (max-width: 600px) {
+    .container{
+        width: 95%;
+    }
+  }

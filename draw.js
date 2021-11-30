@@ -8,12 +8,15 @@ class Player{
 let players = [];
 let player1 = new Player("Muntaga","X");
 let player2 = new Player("Habsa","O");
-//player1.score = parseInt(localStorage.getItem('score'))|| 0;
-//console.log(player1.score );
-player1.score = 0;
-player2.score = 0;
 players.push(player1);
 players.push(player2);
+
+const localData = JSON.parse(window.localStorage.getItem("data"));
+
+players[0].score = parseInt(localData.X) | 0;
+players[1].score = parseInt(localData.X) | 0;
+tie = parseInt(localData.Tie) | 0;
+
 
 let board = ["", "", "", "", "", "", "", "", ""];
 
@@ -72,10 +75,17 @@ const nextPlayer = ()=>{
   }
 //   update score 
 const updateScore =() =>{
+    const data = {
+        "X":`${player1.score}`,
+        "O":`${player2.score}`,
+        "Tie":`${tie}`,
+    }
+    localStorage.setItem('data', JSON.stringify(data));
     turn.className += "active";
-    txtScoreO.innerHTML = `O : ${player2.score}`;
-    txtScoreX.innerHTML = `X : ${player1.score}`;
+    txtScoreO.innerHTML = `O : ${players[1].score}`;
+    txtScoreX.innerHTML = `X : ${players[0].score}`;
 } 
+updateScore();
 const spot = () => {
     let i=0;
     while (i<9){
@@ -117,10 +127,9 @@ const play = () => {
                         if( board[0] == board[1] && board[1] == board[2] && board[2] == activePlayer.sticker || 
                             board[3] == board[4] && board[4] == board[5] && board[5] == activePlayer.sticker || 
                             board[6] == board[7] && board[7] == board[8] && board[8] == activePlayer.sticker){
-                            //    set player1.score to score + 1
-                                    activePlayer.score ++;
+        
+                                    activePlayer.score ++;                                  
                                     
-                                    // localStorage.setItem("Name",activePlayer.name);
                                     updateScore();
                                     stopGame();   
                                     sendMessage(`${activePlayer.sticker} won !`)                                
@@ -145,7 +154,8 @@ const play = () => {
                                 sendMessage(`${activePlayer.sticker} won !`)
                             
                         }else if(spot()){
-                           
+                            tie++;
+                            updateScore();   
                             stopGame();
                             sendMessage(`It was a tie! Try again`)
                         }
@@ -167,6 +177,7 @@ const resetGame = () =>{
     
     player1.score = 0;
     player2.score = 0;
+    let tie = 0;
     updateScore();
     reset();
     play();
