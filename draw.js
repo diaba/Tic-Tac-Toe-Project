@@ -20,6 +20,26 @@ let activePlayer = players[0];
 
 //insert select 
 //board[0] = activePlayer.sticker;
+const askToPlayAgain = ()=>{
+    var txt;
+    if (confirm(`${activePlayer.sticker} won! \n Do you want to Play again`)) {
+    //   reset();
+      play();
+      reset();
+    } else {
+      txt = "You pressed Cancel!";
+    }
+}
+const askToPlayAgainTie = ()=>{
+    var txt;
+    if (confirm(`It's a tie! \n\n Do you want to Play again`)) {
+    //   reset();
+      play();
+      reset();
+    } else {
+      txt = "You pressed Cancel!";
+    }
+}
 
 const nextPlayer = ()=>{
     if(activePlayer == players[0]){
@@ -49,6 +69,7 @@ let btn9 = document.querySelector(".btn9").innerHTML;
 
 let btnReset = document.querySelector(".restart");
 let btnPlay = document.querySelector(".start");
+let gamePlaying = true;
 
   const reset = () => {
       document.querySelector(".turn").innerHTML = "";
@@ -73,7 +94,8 @@ const spot = () => {
     }
 }
 const stopGame = ()=>{
-    document.querySelector(".turn").innerHTML = "";
+    gamePlaying = false;
+    document.querySelector(".turn").innerHTML = " ";
     for (let i = 0; i< 9; i++){
         if(board[i] === ""){
         board[i] = "t";
@@ -82,13 +104,14 @@ const stopGame = ()=>{
 }
 
 const play = () => {
+    gamePlaying = true;
     for (let i = 0; i< 9; i++){
         let btn = document.querySelector(`.btn${i+1}`);
         let content = btn.innerHTML;  
         document.querySelector(".turn").innerHTML = `${activePlayer.sticker} turn.`;
         btn.addEventListener('click', function(event){
              event.preventDefault();           
-             if (board[i] === ""){
+             if (board[i] === "" && gamePlaying === true){
                         // save btn selected to board
                         board[i] = activePlayer.sticker;
                         // -- save it to board
@@ -106,8 +129,8 @@ const play = () => {
                                     // localStorage.setItem("Name",activePlayer.name);
                                     updateScore();
                                     stopGame();
-                                    alert(`${activePlayer.sticker} won` )
-                                   
+                                    
+                                    askToPlayAgain ();
                                 
                         }
                         //Vertical
@@ -119,7 +142,8 @@ const play = () => {
                                     
                                     stopGame();
                         
-                                    alert(`${activePlayer.sticker} won` )
+                                  askToPlayAgain ();
+
                         }
                         //Diagonal
                         else   if(board[0] == board[4] && board[4] == board[8] && board[8] == activePlayer.sticker || 
@@ -128,17 +152,17 @@ const play = () => {
                                 updateScore();
                 
                                 stopGame();
-                                    alert(`${activePlayer.sticker} won` )
+                                askToPlayAgain ();
                             
                         }else if(spot()){
                            
                             stopGame();
-                                    alert(`a tie` )
+                            askToPlayAgain ();
                         }
                         nextPlayer();
                         document.querySelector(".turn").innerHTML = `${activePlayer.sticker} turn.`;
              }          
-            
+             document.querySelector(".turn").innerHTML = ``;
          });
      }     
 }
