@@ -13,9 +13,16 @@ players.push(player2);
 
 const localData = JSON.parse(window.localStorage.getItem("data"));
 
-players[0].score = parseInt(localData.X) | 0;
-players[1].score = parseInt(localData.X) | 0;
-tie = parseInt(localData.Tie) | 0;
+if (localData != null){
+    players[0].score = parseInt(localData.X) ;
+    players[1].score = parseInt(localData.X);
+    tie = parseInt(localData.Tie) ;
+}else{
+players[0].score =  0;
+   players[1].score = 0;
+   tie =  0;
+}
+
 
 
 let board = ["", "", "", "", "", "", "", "", ""];
