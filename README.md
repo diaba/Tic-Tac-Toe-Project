@@ -1,4 +1,33 @@
 # Tic-Tac-Toe-Project
+## Links:
+- Wireframe:
+![](wireframe.jpeg)
+
+
+- [Game link](https://diaba.github.io/Tic-Tac-Toe-Project/?).
+
+
+## Preview
+
+This is a game of tic tac toe played by two and winning occurs when 3 in a row.
+
+## Technology used:
+
+- I used javascript, css , some Bootstrap and html.
+- Local storage
+
+
+## Approach:
+The main approach to the game is to store X and O in an array. Check if same token(X or O) are 3 in same row to declare the winner.
+
+## Main features:
+- Track win, lose, tie Counter.
+- Use local Storage.
+- Audio.
+- Responsive
+- Styling
+
+
 ### User Stories
 
 - As a user, I should be able to start a new tic tac toe game

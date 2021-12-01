@@ -43,17 +43,24 @@ const display = document.querySelector(".message");
 const sound = document.querySelector("#sound");
 const soundT = document.querySelector("#Stie");
 const soundW = document.querySelector("#Swin");
+const gamebox = document.querySelector(".game-box");
+
 
 let activePlayer = players[0];
 let gamePlaying = true;
 let turn = txtScoreX;
 
+// Styling
+const colors =["#826c68","#24246d","#898253","#199ebd","#bc012e","#05472a","#607848","#604848","#321d2e","#f23460"];
+let col = Math.floor(Math.random() * colors.length);
+gamebox.style.background = colors[col];
 
 const reset = () => {
    
     activePlayer = players[0];
     gamePlaying = true;
-    turn.className = "active";
+    turn = txtScoreX;
+    turn.classList.add("active");
     btns.forEach(e =>{
         e.textContent = "";
     })
@@ -64,17 +71,18 @@ const reset = () => {
 
 const nextPlayer = ()=>{
     gamePlaying = true;
-    if(activePlayer == players[0]){
-        turn.classList.remove("active");
-        turn = txtScoreX;
-        turn.classList.add("active");
+    turn.classList.remove("active");
+    if(activePlayer == players[0]){      
+        turn = txtScoreO;    
+        turn.classList.add("active");  
         activePlayer = players[1];
+        
     }
     else{
-        turn.classList.remove("active");
-        turn = txtScoreO;
-        activePlayer = players[0];
+        turn = txtScoreX;
         turn.classList.add("active");
+        activePlayer = players[0];
+        
     }
   }
 //   update score 
@@ -85,12 +93,13 @@ const updateScore =() =>{
         "Tie":`${tie}`,
     }
     localStorage.setItem('data', JSON.stringify(data));
-    turn.className += "active";
+    turn.classList.add("active");
     txtScoreO.innerHTML = `O : ${players[1].score}`;
     txtScoreX.innerHTML = `X : ${players[0].score}`;
     txtScoreT.innerHTML = `Tie : ${tie}`;
 } 
 updateScore();
+
 const spot = () => {
     let i=0;
     while (i<9){
@@ -190,6 +199,7 @@ const resetGame = () =>{
     reset();
     play();
 }
+restart();
 btnRestart.addEventListener("click",restart);
 btnReset.addEventListener("click",resetGame);
 btnPlay.addEventListener("click",restart);
