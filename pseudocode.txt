@@ -1,0 +1,38 @@
+### pseudocode
+create class player
+- name
+- pick (X,o)
+create class game
+-- score
+-- winner
+- show score
+- show winner
+- start game
+- restart game
+
+// playing the game
+set points to zero
+- set player 1 and player 2[x,o]
+-activeplayer to player1
+
+  - loop j from 0 to 9
+    -- print activeplayer turn
+    -- get the grid clicked from front page
+       --- lock the grid
+    -- save it to board
+    -- print x to front page
+    --check for win
+       if activeplayer wins then
+         set player1.score to score + 1
+         print active is the winner front page
+         exit the game
+    next player
+set  draw
+
+// reset game
+set points to zero(x and o)
+
+// restart game
+clean board
+clean front page
+
