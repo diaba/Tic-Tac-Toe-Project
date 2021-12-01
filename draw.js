@@ -92,6 +92,8 @@ const nextPlayer = ()=>{
         
     }
   }
+
+
 //   update score 
 const updateScore =() =>{
     const data = {
@@ -179,9 +181,11 @@ const play = () => {
                         }else if(spot()){
                             tie++;
                             updateScore();   
-                            soundT.play();
+                            
+                            
                             stopGame();
-                            sendMessage(`It was a tie! Try again`)
+                            soundT.play();
+                            sendMessage(`It was a tie! Try again`);
                         }
                         turn.classList.remove("active");
                         nextPlayer();

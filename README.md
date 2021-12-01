@@ -1,7 +1,7 @@
 # Tic-Tac-Toe-Project
 ## Links:
 - Wireframe:
-![](wireframe.jpeg)
+![](wireframe.png)
 
 
 - [Game link](https://diaba.github.io/Tic-Tac-Toe-Project/?).
@@ -30,12 +30,14 @@ This is a game of tic tac toe played by two and winning occurs when 3 in a row.
 ## Approach:
 The main approach to the game is to store X and O in an array. Check if same token(X or O) are 3 in same row to declare the winner.
 
+## How I solved the winner:
+I tracked the position of X and O in an array. When X or O is playing, I checked if it meets the requirement to win.
 ## Main features:
 - Track win, lose, tie Counter.
 - Use local Storage.
 - Audio.
 - Responsive
-- Styling
+- A slightly dumb AI.
 
 ## How to play:
 The game is setup so the first player(X) and the second player(O)
@@ -43,6 +45,8 @@ The game is setup so the first player(X) and the second player(O)
 - Try to click 3 columns or 3 rows or 3 diagonals in a row to win
 - Who ever wins the game will display the winner or tie  
 - With a message to restart automatically the game
+## What next?:
+- To build AI agent to learn how to beat any player 
 
 ## Main repository:
 - [Game link](https://diaba.github.io/Tic-Tac-Toe-Project/?)
